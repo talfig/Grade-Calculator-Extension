@@ -7,16 +7,13 @@
     "activeTab",
     "scripting"
   ],
-  "background": {
-    "service_worker": "background.js"
-  },
   "action": {
     "default_popup": "popup.html",
     "default_title": "Calculate Grade Average"
   },
   "content_scripts": [
     {
-      "matches": ["https://sheilta.apps.openu.ac.il/student360/Home/StudiesPlans/"], 
+      "matches": ["https://sheilta.apps.openu.ac.il/student360/Home/StudiesPlans/"],
       "js": ["content.js"]
     }
   ]
