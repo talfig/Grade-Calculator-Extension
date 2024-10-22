@@ -19,3 +19,25 @@ The **Grade Average Calculator** is a Chrome extension designed to calculate the
    git clone https://github.com/talfig/grade-average-calculator.git
    cd grade-average-calculator
   ```
+2. **Load the extension in Chrome:**
+   - Open Chrome and go to `chrome://extensions/`.
+   - Enable Developer mode using the toggle in the top right corner.
+   - Click on Load unpacked and select the directory of the cloned repository.
+## Usage
+1. Navigate to your university's grade summary page.
+2. Click on the Grade Average Calculator icon in the Chrome toolbar.
+3. Press the Calculate Average button in the popup.
+4. The calculated average will be displayed in the popup.
+
+## Customization
+
+To customize the extension for a specific university or grade summary format, modify the `matches` field in the `manifest.json` file with the appropriate URL of the grade summary page.
+```json
+"content_scripts": [
+    {
+        "matches": ["<URL_of_the_grade_summary_page>"],
+        "js": ["content.js"],
+        "run_at": "document_idle"
+    }
+]
+```
