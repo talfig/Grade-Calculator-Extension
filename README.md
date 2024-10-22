@@ -34,15 +34,46 @@ cd grade-average-calculator
 
 ## Customization
 
-To customize the extension for a specific university or grade summary format, modify the `matches` field in the `manifest.json` file with the appropriate URL of the grade summary page.
+To customize the extension for a specific university or grade summary format, simply modify two key parts of the extension:
 
-For example, if your university's grade summary page is `https://sheilta.apps.openu.ac.il/student360/Home/StudiesPlans/`, you would use:
+- The `matches` field in the `manifest.json` file.
+- The `allowedUrlPattern` in the `popup.js` file.
 
-```json
-"content_scripts": [
-    {
-        "matches": ["https://sheilta.apps.openu.ac.il/student360/Home/StudiesPlans/"],
-        "js": ["content.js"]
-    }
-]
-```
+### Step 1: Modify the `manifest.json`
+
+1. **Open `manifest.json`**:
+   - Locate and open the `manifest.json` file in your project.
+
+2. **Update the `matches` Field**:
+   - Find the `content_scripts` section and replace `<URL_of_the_grade_summary_page>` with the appropriate URL pattern for your university's grade summary page.
+
+     For example, if your university's grade summary page is `https://sheilta.apps.openu.ac.il/student360/Home/StudiesPlans/`, you would use:
+
+     ```json
+     "content_scripts": [
+         {
+             "matches": ["https://sheilta.apps.openu.ac.il/student360/Home/StudiesPlans/*"],
+             "js": ["content.js"]
+         }
+     ]
+     ```
+
+### Step 2: Modify the Allowed URL Pattern
+
+1. **Open `popup.js`**:
+   - Locate and open the `popup.js` file in your project.
+
+2. **Update the Allowed URL Pattern**:
+   - Find the line that defines the `allowedUrlPattern`. It will look like this:
+
+     ```javascript
+     const allowedUrlPattern = /<URL_of_the_grade_summary_page>/; // Replace with your actual URL pattern
+     ```
+
+   - Replace `<URL_of_the_grade_summary_page>` with the appropriate URL pattern that matches your university's grade summary page.
+  
+     For example, if your university's grade summary page is `https://sheilta.apps.openu.ac.il/student360/Home/StudiesPlans/`, you would use:
+
+     ```javascript
+     const allowedUrlPattern = /https:\/\/sheilta.apps.openu.ac.il\/student360\/Home\/StudiesPlans\//;
+     ```
