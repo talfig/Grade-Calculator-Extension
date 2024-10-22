@@ -39,8 +39,7 @@ To customize the extension for a specific university or grade summary format, mo
 "content_scripts": [
     {
         "matches": ["<URL_of_the_grade_summary_page>"],
-        "js": ["content.js"],
-        "run_at": "document_idle"
+        "js": ["content.js"]
     }
 ]
 ```
