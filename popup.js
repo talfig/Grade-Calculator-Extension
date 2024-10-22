@@ -1,17 +1,36 @@
 document.getElementById('calculate').addEventListener('click', () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-      chrome.scripting.executeScript({
-          target: { tabId: tabs[0].id },
-          function: calculateWeightedAverage
-      }, (results) => {
-          if (results[0].result) {
-              document.getElementById('average').textContent = `Your weighted average (GPA) is: ${results[0].result}`;
-          } else {
-              document.getElementById('average').textContent = 'No grades found.';
-          }
-      });
-  });
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        const allowedUrlPattern = /<URL_of_the_grade_summary_page>/; // Replace with your actual URL pattern
+
+        if (!allowedUrlPattern.test(tabs[0].url)) {
+            showErrorMessage(); // Call the error function
+            return; // Exit the function if the URL is not allowed
+        }
+
+        chrome.scripting.executeScript({
+            target: { tabId: tabs[0].id },
+            function: calculateWeightedAverage
+        }, (results) => {
+            if (results[0].result) {
+                document.getElementById('average').textContent = `Your weighted average (GPA) is: ${results[0].result}`;
+                document.getElementById('error').style.display = 'none'; // Hide error message if calculation is successful
+            } else {
+                document.getElementById('average').textContent = 'No grades found.';
+                document.getElementById('error').style.display = 'none'; // Hide error message if no grades are found
+            }
+        });
+    });
 });
+
+// Function to display an error message
+function showErrorMessage() {
+    const averageDiv = document.getElementById('average');
+    averageDiv.textContent = ''; // Clear previous average message
+    const errorDiv = document.getElementById('error');
+    errorDiv.textContent = 'Ensure you\'re on the grade summary page to use this.'; // Set the short error message
+    errorDiv.classList.add('error'); // Add error class for styling
+    errorDiv.style.display = 'block'; // Show error message
+}
 
 // This function will be injected into the active tab
 function calculateWeightedAverage() {

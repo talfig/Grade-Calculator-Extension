@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grade Average Calculator</title>
     <style>
         body {
@@ -41,11 +43,26 @@
             text-align: center;
         }
 
-        /* Additional styling */
+        /* Error message styling */
+        #error {
+            color: #d9534f; /* Bootstrap danger color */
+            background-color: #f2dede; /* Light red background */
+            border: 1px solid #ebccd1; /* Border color */
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none; /* Initially hidden */
+        }
+
+        /* Container for content */
         #container {
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        .error {
+            display: block; /* Show when there’s an error */
         }
     </style>
 </head>
@@ -54,6 +71,7 @@
         <h2>Grade Average</h2>
         <button id="calculate">Calculate Average</button>
         <div id="average">Click the button to calculate.</div>
+        <div id="error"></div> <!-- Error message container -->
     </div>
     <script src="popup.js"></script>
 </body>
