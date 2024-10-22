@@ -22,9 +22,10 @@ cd grade-average-calculator
 ```
 
 2. **Load the extension in Chrome:**
-   - Open Chrome and go to `chrome://extensions/`.
-   - Enable Developer mode using the toggle in the top right corner.
-   - Click on Load unpacked and select the directory of the cloned repository.
+
+- Open Chrome and go to `chrome://extensions/`.
+- Enable Developer mode using the toggle in the top right corner.
+- Click on Load unpacked and select the directory of the cloned repository.
 
 ## Usage
 
