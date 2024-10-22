@@ -1,1 +1,1 @@
-# Average-Calculator
+# Grade-Calculator-Extension
