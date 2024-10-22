@@ -27,7 +27,7 @@ cd grade-average-calculator
 
 ## Usage
 
-1. Navigate to your university's grade summary page.
+1. Navigate to your university's grade summary page (e.g., `https://sheilta.apps.openu.ac.il/student360/Home/StudiesPlans/`).
 2. Click on the Grade Average Calculator icon in the Chrome toolbar.
 3. Press the Calculate Average button in the popup.
 4. The calculated average will be displayed in the popup.
@@ -35,10 +35,13 @@ cd grade-average-calculator
 ## Customization
 
 To customize the extension for a specific university or grade summary format, modify the `matches` field in the `manifest.json` file with the appropriate URL of the grade summary page.
+
+For example, if your university's grade summary page is `https://sheilta.apps.openu.ac.il/student360/Home/StudiesPlans/`, you would use:
+
 ```json
 "content_scripts": [
     {
-        "matches": ["<URL_of_the_grade_summary_page>"],
+        "matches": ["https://sheilta.apps.openu.ac.il/student360/Home/StudiesPlans/"],
         "js": ["content.js"]
     }
 ]
