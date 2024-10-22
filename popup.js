@@ -1,32 +1,50 @@
-// Send a message to the content script to calculate the average
-chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-  chrome.scripting.executeScript({
-    target: { tabId: tabs[0].id },
-    function: calculateAverage
-  }, (results) => {
-    if (results[0].result) {
-      document.getElementById('average').textContent = `Your average grade is: ${results[0].result}`;
-    } else {
-      document.getElementById('average').textContent = 'No grades found.';
-    }
+document.getElementById('calculate').addEventListener('click', () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+      chrome.scripting.executeScript({
+          target: { tabId: tabs[0].id },
+          function: calculateWeightedAverage
+      }, (results) => {
+          if (results[0].result) {
+              document.getElementById('average').textContent = `Your weighted average (GPA) is: ${results[0].result}`;
+          } else {
+              document.getElementById('average').textContent = 'No grades found.';
+          }
+      });
   });
 });
 
-// Same function as the content.js script
-function calculateAverage() {
-  let gradeElements = document.querySelectorAll(".grade");
-  let grades = [];
-  gradeElements.forEach(element => {
-    let grade = parseFloat(element.textContent);
-    if (!isNaN(grade)) {
-      grades.push(grade);
-    }
+// This function will be injected into the active tab
+function calculateWeightedAverage() {
+  // Select all table rows where grades and credits are located
+  let rows = document.querySelectorAll("table.table-condensed.table-hover tbody tr");
+
+  let totalCredits = 0;
+  let weightedGradeSum = 0;
+
+  rows.forEach(row => {
+      let cells = row.querySelectorAll("td");
+      
+      // Ensure the row has enough cells (at least 6 for credits and grades)
+      if (cells.length >= 6) {
+          let creditsCell = cells[4];  // Credits in the 5th cell (index 4)
+          let gradeCell = cells[5];    // Grade in the 6th cell (index 5)
+          
+          // Extract and parse the credit and grade values
+          let credits = parseFloat(creditsCell.textContent.trim());
+          let grade = parseFloat(gradeCell.textContent.trim());
+          
+          if (!isNaN(credits) && !isNaN(grade)) {
+              totalCredits += credits;
+              weightedGradeSum += credits * grade;  // Multiply grade by credits
+          }
+      }
   });
 
-  if (grades.length > 0) {
-    let total = grades.reduce((acc, grade) => acc + grade, 0);
-    return (total / grades.length).toFixed(2);
+  // Calculate the weighted average (GPA)
+  if (totalCredits > 0) {
+      let weightedAverage = weightedGradeSum / totalCredits;
+      return weightedAverage.toFixed(2); // Rounded to 2 decimal places
   } else {
-    return null;
+      return null;
   }
 }

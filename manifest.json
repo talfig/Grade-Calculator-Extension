@@ -4,8 +4,7 @@
   "version": "1.0",
   "description": "Calculates the weighted grade average on the university grade summary page.",
   "permissions": [
-    "activeTab",
-    "scripting"
+    "activeTab"
   ],
   "action": {
     "default_popup": "popup.html",
