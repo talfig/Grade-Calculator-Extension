@@ -61,8 +61,8 @@ function calculateWeightedAverage() {
 
             // Process each level-grade pair
             for (let i = 0; i < Math.min(levelTexts.length, creditsArr.length); i++) {
-                const level = levelTexts[i].trim();
-                let credits = Number(creditsArr[i]);
+                const level = levelTexts[i];
+                let credits = creditsArr[i];
 
                 if (isNaN(credits)) continue;
 
