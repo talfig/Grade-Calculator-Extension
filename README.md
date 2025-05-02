@@ -78,7 +78,7 @@ To customize the extension for a specific university or grade summary format, si
      const allowedUrlPattern = /https:\/\/sheilta.apps.openu.ac.il\/student360\/Home\/StudiesPlans\//;
      ```
 
-### Step 3: Load the extension in Chrome:
+### Step 3: Load the extension in Chrome
 
    1. Open Chrome and go to `chrome://extensions/`.
 
