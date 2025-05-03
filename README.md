@@ -77,11 +77,3 @@ To customize the extension for a specific university or grade summary format, si
      ```javascript
      const allowedUrlPattern = /https:\/\/sheilta.apps.openu.ac.il\/student360\/Home\/StudiesPlans\//;
      ```
-
-### Step 3: Load the extension in Chrome
-
-   1. Open Chrome and go to `chrome://extensions/`.
-
-   2. Enable Developer mode using the toggle in the top right corner.
-
-   3. Click on Load unpacked and select the directory of the cloned repository.
