@@ -1,6 +1,6 @@
 document.getElementById('calculate').addEventListener('click', () => {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-        const allowedUrlPattern = /<URL_of_the_grade_summary_page>/; // Replace with your actual URL pattern
+        const allowedUrlPattern = /https:\/\/sheilta.apps.openu.ac.il\/student360\/Home\/StudiesPlans\//; // Replace with your actual URL pattern
 
         if (!allowedUrlPattern.test(tabs[0].url)) {
             showErrorMessage(); // Call the error function

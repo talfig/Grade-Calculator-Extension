@@ -13,7 +13,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["<URL_of_the_grade_summary_page>"],
+      "matches": ["https://sheilta.apps.openu.ac.il/student360/Home/StudiesPlans/"],
       "js": ["content.js"]
     }
   ]
