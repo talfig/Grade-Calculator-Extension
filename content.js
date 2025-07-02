@@ -48,3 +48,13 @@ function calculateWeightedAverage() {
         return null;
     }
 }
+
+// Run the calculation and display the result
+let weightedAverage = calculateWeightedAverage();
+if (weightedAverage !== null) {
+  console.log(`Your weighted average (GPA) is: ${weightedAverage}`);
+  alert(`Your weighted average (GPA) is: ${weightedAverage}`);
+} else {
+  console.log("No grades or credits found.");
+  alert("No grades or credits found.");
+}
