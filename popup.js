@@ -27,7 +27,17 @@ function showErrorMessage() {
     const averageDiv = document.getElementById('average');
     averageDiv.textContent = ''; // Clear previous average message
     const errorDiv = document.getElementById('error');
-    errorDiv.textContent = 'Ensure you\'re on the grade summary page to use this.'; // Set the short error message
+    errorDiv.innerHTML = `
+        <strong>
+            Ensure you're on the grade summary page.
+            Try this link: 
+            <a href="https://sheilta.apps.openu.ac.il/student360/Home/StudiesPlans/" 
+               target="_blank" 
+               style="color: red; font-weight: bold;">
+               Grade Summary
+            </a>
+        </strong>
+    `;
     errorDiv.classList.add('error'); // Add error class for styling
     errorDiv.style.display = 'block'; // Show error message
 }
