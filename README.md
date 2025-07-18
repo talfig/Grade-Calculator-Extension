@@ -15,7 +15,7 @@ The **Grade Average Calculator** is a Chrome extension designed to calculate the
 1. **Clone the repository**:
 
 ```bash
-git clone https://github.com/talfig/grade-average-calculator.git
+git clone https://github.com/talfig/Grade-Calculator-Extension.git
 cd grade-average-calculator
 ```
 
